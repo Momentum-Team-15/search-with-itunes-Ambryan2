@@ -9,3 +9,12 @@
     background-color: blue;
     margin: 10px 2px;
 }
+.searchCont{
+    display:flex;
+    justify-content: center;
+}
+.header{
+    display:flex;
+    justify-content: center;
+    font-size: 35px;
+}

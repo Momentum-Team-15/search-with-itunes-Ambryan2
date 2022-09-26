@@ -9,19 +9,22 @@
   </head>
   <body>
     <!-- This is the header -->
-    <header>
+    <header class="header">
       <h1>Really Awesome Music Site!</h1>
     </header>
     <!-- This is where I want the audio file to be -->
     <section>
-      <p>placeholder</p>
+      <p>where the music button can be played</p>
       <p>title of song</p>
     </section>
     <!-- divider Line -->
       <hr>
     <!-- This is where I want the search to be -->
-    <section>
-      <p>this will be the search bar</p>
+    <section class="searchCont">
+      <form id="musicForm" action="" method="post">
+        <input type="text" id="artistBar" placeholder="Search for Artist">
+        <button type="submit" id="searchButton">Search</button>
+      </form>
     </section>
     <!-- divider line -->
     <hr>
