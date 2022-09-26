@@ -1,0 +1,11 @@
+.musicContainer{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.songOption{
+    height: 400px;
+    width: 18%;
+    background-color: blue;
+    margin: 10px 2px;
+}
