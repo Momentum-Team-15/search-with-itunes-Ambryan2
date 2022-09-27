@@ -2,33 +2,24 @@
 let desiredArt = []; //this will contain the artist written in search
 let artistResults = []; //this will hold the info of artist from apple array
 
-//this function filters through desiredArt function and then finds in another array that has matching information
-function finder(array) {
-    for (let j = 0; j < array.length; j++) {
-        for (let i = 0; i < newCust.length; i++) {
-            if (newCust[i].name.first === array[j]) {
-                //newCust data should be replaced with array information I would need
-                artistResults.push(newCust[i]); //this all the info of peoples names selected
-            }
-        }
-    }
-}
-
+//referec
 let resultGrid = document.querySelector("#musicContainer");
+let form = document.querySelector("#musicForm");
+let artist = document.querySelector("#artistBar");
 
 //fake array for test
-// let fakeArr = [
-//     "bob",
-//     "sally",
-//     "marry",
-//     "christ",
-//     "jet",
-//     "truck",
-//     "tank",
-//     "chair",
-//     "pops",
-//     "dork",
-// ];
+let fakeArr = [
+    "bob",
+    "sally",
+    "marry",
+    "christ",
+    "jet",
+    "truck",
+    "tank",
+    "chair",
+    "pops",
+    "dork",
+];
 //function that build the grid on the bottom
 function searchGrid(results) {
     let resultCont = document.createElement("div");
@@ -53,15 +44,14 @@ function searchGrid(results) {
 }
 
 //to collect input from the search bar and the search button
-let form = document.querySelector("#musicForm");
-let artist = document.querySelector("#artistBar");
 
-//using fetch to get data from itunes api
-fetch(`https://itunes.apple.com/search?parameterkeyvalue`) //the end of this line needs to refer to spot in itunes
-.then( function (desiredArt){
+
+//using fetch to get data from itunes api  https://itunes.apple.com/search?parameterkeyvalue
+fetch(`https://itunes.apple.com/search?musicArtist=${desiredArt}`)
+.then( function (response){
     return response.json()
 })
-.then(function(){
+.then(function(posts){console.log(posts)
 
 })
 
@@ -78,6 +68,7 @@ function emptyGrid(container) {
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     desiredArt = artist.value;
+    console.log(desiredArt)
     emptyGrid(resultGrid);
     //this is a test in making grid
     searchGrid(fakeArr);
