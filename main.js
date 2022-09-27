@@ -1,7 +1,7 @@
 //temperary arrays I will use to find the artist in itunes database
 let desiredArt = []; //this will contain the artist written in search
 let artistResults = []; //this will hold the info of artist from apple array
-let filteredResults = [];
+let filteredSongResults = [];
 
 //referec
 let resultGrid = document.querySelector("#musicContainer");
@@ -9,29 +9,31 @@ let form = document.querySelector("#musicForm");
 let artist = document.querySelector("#artistBar");
 
 //fake array for test
-let fakeArr = [
-    "bob",
-    "sally",
-    "marry",
-    "christ",
-    "jet",
-    "truck",
-    "tank",
-    "chair",
-    "pops",
-    "dork",
-];
+// let fakeArr = [
+//     "bob",
+//     "sally",
+//     "marry",
+//     "christ",
+//     "jet",
+//     "truck",
+//     "tank",
+//     "chair",
+//     "pops",
+//     "dork",
+// ];
 //function that build the grid on the bottom
 function searchGrid(results) {
     let resultCont = document.createElement("div");
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < results.length; i++) {
         let indivResult = document.createElement("div");
         let albumCov = document.createElement("img");
         let songTitle = document.createElement("p");
         let bandName = document.createElement("h2");
 
         //this is where giv albumCOv, songTitle and BandName information
-        bandName.innerText = results[i];
+        bandName.innerText = filteredSongResults[i].artistName;
+        songTitle.innerText = filteredSongResults[i].trackCensoredName
+        albumCov.src = filteredSongResults[i].artworkUrl100
         //adding everything to result div
         indivResult.classList.add("songOption");
         indivResult.appendChild(albumCov);
@@ -51,7 +53,7 @@ function emptyGrid(container) {
     let removeResults = container.querySelectorAll(".gridStyle");
     for (let destroy of removeResults) {
         container.removeChild(destroy);
-        console.log("grid was destroyed");
+        // console.log("grid was destroyed");
     }
 }
 //when search is clicked this is what results
@@ -65,21 +67,29 @@ form.addEventListener("submit", (event) => {
             return response.json();
         })
         .then(function (posts) {
-            console.log(posts);
+            // console.log(posts);
             artistResults = posts.results.slice();
-            console.log(artistResults);
+            // console.log(artistResults);
             for (let i = 0; i < artistResults.length; i++) {
                 if (artistResults[i].kind === "song") {
-                    filteredResults += artistResults[i];
-                    console.log(filteredResults);
+                    filteredSongResults.push(artistResults[i]);
+                    
                 }
             }
+            filteredSongResults = filteredSongResults.slice(0,15);
+            // console.log(filteredSongResults);
         });
-
-    console.log(desiredArt);
     emptyGrid(resultGrid);
+    console.log(filteredSongResults);
     //this is a test in making grid
-    searchGrid(fakeArr);
+    searchGrid(filteredSongResults);
+    filteredSongResults=[]
+    
+    
+    
+    
+    
+    // console.log(searchGrid(filteredSongResults))
 
     //need a function that will clear the results already displayed
 
