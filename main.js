@@ -31,11 +31,19 @@ function searchGrid(results) {
         playB.type = "submit";
         playB.value = `${filteredSongResults[i].previewUrl}`
         playB.classList.add("playButton");
-        playB.setAttribute("id", "button"+i); //starts count at 0
+        
+        // playB.setAttribute("id", "button"+i); //starts count at 0
+        
         //adding css and putting everything in div
         songTitle.classList.add("titleTxt");
         bandName.classList.add("artistName");
         indivResult.classList.add("songOption");
+
+        playB.addEventListener('click', (event)=> {
+                audio.src='';
+                audio.src = playB.value
+        })
+
         indivResult.appendChild(albumCov);
         indivResult.appendChild(bandName);
         indivResult.appendChild(songTitle);
@@ -44,8 +52,16 @@ function searchGrid(results) {
         resultCont.appendChild(indivResult);
     }
     //adding everything to container in html
+  
+    
     resultCont.classList.add("gridStyle");
     resultGrid.appendChild(resultCont);
+
+//   let player = document.querySelectorAll('.playButton')
+
+    
+
+
 }
 
 //to collect input from the search bar and the search button
@@ -78,125 +94,16 @@ form.addEventListener("submit", (event) => {
                 }
             }
             filteredSongResults = filteredSongResults.slice(0, 15);
-            console.log(filteredSongResults);
+            // console.log(filteredSongResults);
             emptyGrid(resultGrid);
             searchGrid(filteredSongResults);
 
             //path to music filteredSongResults[i].previewUrl
             //connect to button 
-            let button0 = document.querySelector('#button0')
-            let button1 = document.querySelector('#button1')
-            let button2 = document.querySelector('#button2')
-            let button3 = document.querySelector('#button3')
-            let button4 = document.querySelector('#button4')
-            let button5 = document.querySelector('#button5')
-            let button6 = document.querySelector('#button6')
-            let button7 = document.querySelector('#button7')
-            let button8 = document.querySelector('#button8')
-            let button9 = document.querySelector('#button9')
-            let button10 = document.querySelector('#button10')
-            let button11 = document.querySelector('#button11')
-            let button12 = document.querySelector('#button12')
-            let button13 = document.querySelector('#button13')
-            let button14 = document.querySelector('#button14')
-            // let button3 = document.querySelector('#button2')
-            // let button4 = document.querySelector('#button3')
-
-
-            button0.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button0.value
-                        console.log(button0.value)     
-            })
-            button1.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button1.value
-                        console.log(button1.value)     
-            })
-            button2.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button2.value
-                        console.log(button2.value)     
-            })
-            button3.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button3.value
-                        console.log(button3.value)     
-            })
-            button4.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button4.value
-                        console.log(button4.value)     
-            })
-            button5.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button5.value
-                        console.log(button5.value)     
-            })
-            button6.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button6.value
-                        console.log(button6.value)     
-            })
-            button7.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button7.value
-                        console.log(button7.value)     
-            })
-            button8.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button8.value
-                        console.log(button8.value)     
-            })
-            button9.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button9.value
-                        console.log(button9.value)     
-            })
-            button10.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button10.value
-                        console.log(button10.value)     
-            })
-            button11.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button11.value
-                        console.log(button11.value)     
-            })
-            button12.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button12.value
-                        console.log(button12.value)     
-            })
-            button13.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button13.value
-                        console.log(button13.value)     
-            })
-            button14.addEventListener('click', (event) => {
-                event.preventDefault();
-                audio.src = ''
-                audio.src = button14.value
-                        console.log(button14.value)     
-            })
 
             //test play first song
             filteredSongResults = [];
-            console.log(filteredSongResults);
+            // console.log(filteredSongResults);
         });
 });
 
