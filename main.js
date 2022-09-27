@@ -9,7 +9,6 @@ let form = document.querySelector("#musicForm");
 let artist = document.querySelector("#artistBar");
 let audio = document.querySelector("#audio");
 
-
 //function that build the grid on the bottom
 function searchGrid(results) {
     let resultCont = document.createElement("div");
@@ -20,19 +19,15 @@ function searchGrid(results) {
         let bandName = document.createElement("p");
         let playB = document.createElement("button");
 
-
         //this is where giv albumCOv, songTitle and BandName information
         bandName.innerText = filteredSongResults[i].artistName;
         songTitle.innerText = filteredSongResults[i].trackCensoredName;
         albumCov.src = filteredSongResults[i].artworkUrl100;
-        
 
         playB.innerText = "Play";
         playB.type = "submit";
         playB.value = `${filteredSongResults[i].previewUrl}`
         playB.classList.add("playButton");
-        
-        // playB.setAttribute("id", "button"+i); //starts count at 0
         
         //adding css and putting everything in div
         songTitle.classList.add("titleTxt");
@@ -63,8 +58,6 @@ function searchGrid(results) {
 
 
 }
-
-//to collect input from the search bar and the search button
 
 //function meant to hide anything in the grid
 function emptyGrid(container) {
@@ -97,22 +90,6 @@ form.addEventListener("submit", (event) => {
             // console.log(filteredSongResults);
             emptyGrid(resultGrid);
             searchGrid(filteredSongResults);
-
-            //path to music filteredSongResults[i].previewUrl
-            //connect to button 
-
-            //test play first song
             filteredSongResults = [];
-            // console.log(filteredSongResults);
         });
 });
-
-// console.log(searchGrid(filteredSongResults))
-
-//need a function that will clear the results already displayed
-
-//need a function that will build the music results on bottom
-
-//also will need a function that will empty the default results on the song player
-
-//also will need a function that will build the song player on top
