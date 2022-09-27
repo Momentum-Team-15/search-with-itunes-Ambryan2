@@ -8,19 +8,6 @@ let resultGrid = document.querySelector("#musicContainer");
 let form = document.querySelector("#musicForm");
 let artist = document.querySelector("#artistBar");
 
-//fake array for test
-// let fakeArr = [
-//     "bob",
-//     "sally",
-//     "marry",
-//     "christ",
-//     "jet",
-//     "truck",
-//     "tank",
-//     "chair",
-//     "pops",
-//     "dork",
-// ];
 //function that build the grid on the bottom
 function searchGrid(results) {
     let resultCont = document.createElement("div");
@@ -67,7 +54,7 @@ form.addEventListener("submit", (event) => {
             return response.json();
         })
         .then(function (posts) {
-            // console.log(posts);
+            filteredSongResults = [];
             artistResults = posts.results.slice();
             // console.log(artistResults);
             for (let i = 0; i < artistResults.length; i++) {
@@ -77,15 +64,14 @@ form.addEventListener("submit", (event) => {
                 }
             }
             filteredSongResults = filteredSongResults.slice(0,15);
-            // console.log(filteredSongResults);
+            emptyGrid(resultGrid);
+            searchGrid(filteredSongResults);
+            console.log(filteredSongResults);
         });
-    emptyGrid(resultGrid);
-    console.log(filteredSongResults);
-    //this is a test in making grid
-    searchGrid(filteredSongResults);
+    
     filteredSongResults=[]
     
-    
+    });
     
     
     
@@ -98,4 +84,4 @@ form.addEventListener("submit", (event) => {
     //also will need a function that will empty the default results on the song player
 
     //also will need a function that will build the song player on top
-});
+
