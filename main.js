@@ -46,16 +46,6 @@ function searchGrid(results) {
 //to collect input from the search bar and the search button
 
 
-//using fetch to get data from itunes api  https://itunes.apple.com/search?parameterkeyvalue
-fetch(`https://itunes.apple.com/search?musicArtist=${desiredArt}`)
-.then( function (response){
-    return response.json()
-})
-.then(function(posts){console.log(posts)
-
-})
-
-
 //function meant to hide anything in the grid
 function emptyGrid(container) {
     let removeResults = container.querySelectorAll(".gridStyle");
@@ -68,6 +58,17 @@ function emptyGrid(container) {
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     desiredArt = artist.value;
+
+//using fetch to get data from itunes api  https://itunes.apple.com/search?parameterkeyvalue
+fetch(`https://itunes.apple.com/search?term=${desiredArt}`)
+.then( function (response){
+    return response.json()
+})
+.then(function(posts){console.log(posts)
+
+})
+
+
     console.log(desiredArt)
     emptyGrid(resultGrid);
     //this is a test in making grid
