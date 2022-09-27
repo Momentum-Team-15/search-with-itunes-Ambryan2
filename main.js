@@ -17,18 +17,18 @@ function finder(array) {
 let resultGrid = document.querySelector("#musicContainer");
 
 //fake array for test
-let fakeArr = [
-    "bob",
-    "sally",
-    "marry",
-    "christ",
-    "jet",
-    "truck",
-    "tank",
-    "chair",
-    "pops",
-    "dork",
-];
+// let fakeArr = [
+//     "bob",
+//     "sally",
+//     "marry",
+//     "christ",
+//     "jet",
+//     "truck",
+//     "tank",
+//     "chair",
+//     "pops",
+//     "dork",
+// ];
 //function that build the grid on the bottom
 function searchGrid(results) {
     let resultCont = document.createElement("div");
@@ -55,6 +55,16 @@ function searchGrid(results) {
 //to collect input from the search bar and the search button
 let form = document.querySelector("#musicForm");
 let artist = document.querySelector("#artistBar");
+
+//using fetch to get data from itunes api
+fetch(`https://itunes.apple.com/search?parameterkeyvalue`) //the end of this line needs to refer to spot in itunes
+.then( function (desiredArt){
+    return response.json()
+})
+.then(function(){
+
+})
+
 
 //function meant to hide anything in the grid
 function emptyGrid(container) {
