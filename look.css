@@ -34,10 +34,11 @@
 }
 .searchCont{
     display:flex;
-    background-color: red;
 }
 .inputStyle{
     width: 400px;
     height: 50px;
+    border-radius: 2em;
     border: 1px solid grey;
+    padding-left: 20px;
 }

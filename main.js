@@ -46,17 +46,9 @@ function searchGrid(results) {
 
         resultCont.appendChild(indivResult);
     }
-    //adding everything to container in html
-  
-    
+
     resultCont.classList.add("gridStyle");
     resultGrid.appendChild(resultCont);
-
-//   let player = document.querySelectorAll('.playButton')
-
-    
-
-
 }
 
 //function meant to hide anything in the grid
