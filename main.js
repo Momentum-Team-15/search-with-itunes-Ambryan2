@@ -3,11 +3,11 @@ let desiredArt = []; //this will contain the artist written in search
 let artistResults = []; //this will hold the info of artist from apple array
 let filteredSongResults = [];
 
-//referec
+//reference
 let resultGrid = document.querySelector("#musicContainer");
 let form = document.querySelector("#musicForm");
 let artist = document.querySelector("#artistBar");
-
+let audio = document.querySelector("#audio");
 //function that build the grid on the bottom
 function searchGrid(results) {
     let resultCont = document.createElement("div");
@@ -15,17 +15,32 @@ function searchGrid(results) {
         let indivResult = document.createElement("div");
         let albumCov = document.createElement("img");
         let songTitle = document.createElement("p");
-        let bandName = document.createElement("h2");
+        let bandName = document.createElement("p");
+        let playB = document.createElement("button");
+        let song = document.createElement("audio");
 
         //this is where giv albumCOv, songTitle and BandName information
         bandName.innerText = filteredSongResults[i].artistName;
-        songTitle.innerText = filteredSongResults[i].trackCensoredName
-        albumCov.src = filteredSongResults[i].artworkUrl100
-        //adding everything to result div
+        songTitle.innerText = filteredSongResults[i].trackCensoredName;
+        albumCov.src = filteredSongResults[i].artworkUrl100;
+        song.src = filteredSongResults[i].previewUrl;
+        song.type = "audio/mpeg";
+
+        playB.innerText = "Play";
+        playB.type = "submit";
+        playB.value = `${song.src}`
+        playB.classList.add("playButton");
+        playB.setAttribute("id", "button" + i); //starts count at 0
+        //adding css and putting everything in div
+        songTitle.classList.add("titleTxt");
+        bandName.classList.add("artistName");
         indivResult.classList.add("songOption");
         indivResult.appendChild(albumCov);
-        indivResult.appendChild(songTitle);
         indivResult.appendChild(bandName);
+        indivResult.appendChild(songTitle);
+        indivResult.appendChild(playB);
+        indivResult.appendChild(song);
+
         resultCont.appendChild(indivResult);
     }
     //adding everything to container in html
@@ -60,28 +75,43 @@ form.addEventListener("submit", (event) => {
             for (let i = 0; i < artistResults.length; i++) {
                 if (artistResults[i].kind === "song") {
                     filteredSongResults.push(artistResults[i]);
-                    
                 }
             }
-            filteredSongResults = filteredSongResults.slice(0,15);
+            filteredSongResults = filteredSongResults.slice(0, 15);
+            console.log(filteredSongResults);
             emptyGrid(resultGrid);
             searchGrid(filteredSongResults);
+
+            //path to music filteredSongResults[i].previewUrl
+            //connect to button 
+            let button1 = document.querySelector('#button0')
+            let button2 = document.querySelector('#button1')
+            // let button3 = document.querySelector('#button2')
+            // let button4 = document.querySelector('#button3')
+
+
+            button1.addEventListener('click', (event) => {
+                event.preventDefault();
+                audio.src = ''
+                audio.src = button1.value
+                        console.log(button1.value)
+                    
+            })
+
+
+
+            //test play first song
+            filteredSongResults = [];
             console.log(filteredSongResults);
         });
-    
-    filteredSongResults=[]
-    
-    });
-    
-    
-    
-    // console.log(searchGrid(filteredSongResults))
+});
 
-    //need a function that will clear the results already displayed
+// console.log(searchGrid(filteredSongResults))
 
-    //need a function that will build the music results on bottom
+//need a function that will clear the results already displayed
 
-    //also will need a function that will empty the default results on the song player
+//need a function that will build the music results on bottom
 
-    //also will need a function that will build the song player on top
+//also will need a function that will empty the default results on the song player
 
+//also will need a function that will build the song player on top
