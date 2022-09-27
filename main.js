@@ -1,6 +1,7 @@
 //temperary arrays I will use to find the artist in itunes database
 let desiredArt = []; //this will contain the artist written in search
 let artistResults = []; //this will hold the info of artist from apple array
+let filteredResults = [];
 
 //referec
 let resultGrid = document.querySelector("#musicContainer");
@@ -45,13 +46,12 @@ function searchGrid(results) {
 
 //to collect input from the search bar and the search button
 
-
 //function meant to hide anything in the grid
 function emptyGrid(container) {
     let removeResults = container.querySelectorAll(".gridStyle");
     for (let destroy of removeResults) {
         container.removeChild(destroy);
-        console.log('grid was destroyed')
+        console.log("grid was destroyed");
     }
 }
 //when search is clicked this is what results
@@ -59,17 +59,24 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
     desiredArt = artist.value;
 
-//using fetch to get data from itunes api  https://itunes.apple.com/search?parameterkeyvalue
-fetch(`https://itunes.apple.com/search?term=${desiredArt}`)
-.then( function (response){
-    return response.json()
-})
-.then(function(posts){console.log(posts)
+    //using fetch to get data from itunes api  https://itunes.apple.com/search?parameterkeyvalue
+    fetch(`https://itunes.apple.com/search?term=${desiredArt}`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (posts) {
+            console.log(posts);
+            artistResults = posts.results.slice();
+            console.log(artistResults);
+            for (let i = 0; i < artistResults.length; i++) {
+                if (artistResults[i].kind === "song") {
+                    filteredResults += artistResults[i];
+                    console.log(filteredResults);
+                }
+            }
+        });
 
-})
-
-
-    console.log(desiredArt)
+    console.log(desiredArt);
     emptyGrid(resultGrid);
     //this is a test in making grid
     searchGrid(fakeArr);
@@ -81,5 +88,4 @@ fetch(`https://itunes.apple.com/search?term=${desiredArt}`)
     //also will need a function that will empty the default results on the song player
 
     //also will need a function that will build the song player on top
-
 });
