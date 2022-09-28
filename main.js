@@ -8,6 +8,7 @@ let resultGrid = document.querySelector("#musicContainer");
 let form = document.querySelector("#musicForm");
 let artist = document.querySelector("#artistBar");
 let audio = document.querySelector("#audio");
+let musicSong = document.querySelector("#description")
 
 //function that build the grid on the bottom
 function searchGrid(results) {
@@ -37,6 +38,8 @@ function searchGrid(results) {
         playB.addEventListener('click', (event)=> {
                 audio.src='';
                 audio.src = playB.value
+                musicSong.innerText = ''
+                musicSong.innerText = `${songTitle.innerText}-${bandName.innerText}`
         })
 
         indivResult.appendChild(albumCov);
@@ -72,16 +75,18 @@ form.addEventListener("submit", (event) => {
         .then(function (posts) {
             filteredSongResults = [];
             artistResults = posts.results.slice();
-            // console.log(artistResults);
             for (let i = 0; i < artistResults.length; i++) {
                 if (artistResults[i].kind === "song") {
                     filteredSongResults.push(artistResults[i]);
                 }
             }
             filteredSongResults = filteredSongResults.slice(0, 15);
-            // console.log(filteredSongResults);
+            console.log(filteredSongResults);
             emptyGrid(resultGrid);
             searchGrid(filteredSongResults);
             filteredSongResults = [];
-        });
+        })
+        .catch(error=>{
+            console.error(error);
+        })
 });
