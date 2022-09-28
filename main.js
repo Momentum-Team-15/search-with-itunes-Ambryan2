@@ -81,7 +81,11 @@ form.addEventListener("submit", (event) => {
                 }
             }
             filteredSongResults = filteredSongResults.slice(0, 15);
-            console.log(filteredSongResults);
+            //want to make i so if there is nothing in filtered results then it returns something different
+            if (filteredSongResults.length === 0){
+                console.log('test worked')
+            }
+            console.log(filteredSongResults.length);
             emptyGrid(resultGrid);
             searchGrid(filteredSongResults);
             filteredSongResults = [];
