@@ -25,10 +25,10 @@ function searchGrid(results) {
         songTitle.innerText = filteredSongResults[i].trackCensoredName;
         albumCov.src = filteredSongResults[i].artworkUrl100;
 
+        songTitle.href = `${filteredSongResults[i].previewUrl}`
         playB.innerText = "Play";
         playB.type = "submit";
         playB.value = `${filteredSongResults[i].previewUrl}`
-        playB.classList.add("playButton");
         
         //adding css and putting everything in div
         songTitle.classList.add("titleTxt");
@@ -66,7 +66,9 @@ function emptyGrid(container) {
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     desiredArt = artist.value;
-
+    audio.src = '';
+    musicSong.innerText = '';
+    emptyGrid(resultGrid);
     //using fetch to get data from itunes api  https://itunes.apple.com/search?parameterkeyvalue
     fetch(`https://itunes.apple.com/search?term=${desiredArt}`)
         .then(function (response) {
@@ -74,6 +76,7 @@ form.addEventListener("submit", (event) => {
         })
         .then(function (posts) {
             filteredSongResults = [];
+            emptyGrid(resultGrid);
             artistResults = posts.results.slice();
             for (let i = 0; i < artistResults.length; i++) {
                 if (artistResults[i].kind === "song") {
@@ -84,10 +87,27 @@ form.addEventListener("submit", (event) => {
             //want to make i so if there is nothing in filtered results then it returns something different
             if (filteredSongResults.length === 0){
                 console.log('test worked')
+                let noCont = document.createElement('div')
+                let nothing = document.createElement('h1')
+                let theGoat = document.createElement('img');
+
+                nothing.innerText = 'no search results'
+                noCont.classList.add('gridStyle')
+                theGoat.src = ('https://i1.sndcdn.com/artworks-dVH0EE65EwUOKdvd-NfhGug-t500x500.jpg');
+
+                audio.src = "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/47/72/65/4772654c-bff8-5c34-14b2-ce9de8504f2e/mzaf_9070437753430182370.plus.aac.p.m4a"
+                musicSong.innerText = `Should of searched for an actual Song`
+
+                noCont.appendChild(nothing);
+                noCont.appendChild(theGoat);
+                resultGrid.appendChild(noCont);
             }
-            console.log(filteredSongResults.length);
+            else{
             emptyGrid(resultGrid);
+            console.log(filteredSongResults);
             searchGrid(filteredSongResults);
+            }
+            // console.log(filteredSongResults.length);
             filteredSongResults = [];
         })
         .catch(error=>{

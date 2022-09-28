@@ -1,4 +1,7 @@
-
+button{
+    background-color:white;
+    border: none;
+}
 .gridStyle{
     display:flex;
     flex-flow: row wrap;
