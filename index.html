@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="main.js" defer></script>
-  <title>Music Search</title>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="package-lock.json" defer></script> -->
+     <link rel="stylesheet" href="look.css" />
+     <script src="main.js" defer></script>
+    <title>Music Search</title>
+   
+  </head>
+  <body>
+    <!-- This is the header -->
+    <header class="header">
+      <h1>Really Awesome Music Site!</h1>
+    </header>
+    <!-- This is where I want the audio file to be -->
+    <section>
+      <audio id="audio" src="" type="" controls autoplay>
+        <!-- <source id="audio" src="" type=""> -->
+      </audio>
+      <p id='description'></p>
+    </section>
+    <!-- divider Line -->
+      <hr>
+    <!-- This is where I want the search to be -->
+    <section class="searchCont">
+      <form id="musicForm" action="" method="post">
+        <input type="text" id="artistBar" class="inputStyle" placeholder="Search for Artist">
+        <button type="submit" id="searchButton">Search</button>
+      </form>
+    </section>
+    <!-- divider line -->
+    <hr>
+    <!-- This is where the display for the different songs will be -->
+    <section>
+      <p><b>Search Results:</b></p>
+      <div id="musicContainer">
+      </div>
+    </section>
+  </body>
 </html>
